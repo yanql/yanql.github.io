@@ -7,7 +7,7 @@
 	<meta name="author" content="xiaoi">
 
 	
-	<meta name="description" content="前后耗费数个小时研究，在您看到这篇文章时，总算是成功了，在部署到git过程中遇到一些问题，顺道一起学了git，虽然有点曲折，但这样折腾几翻，印象颇为深刻（我其实骨子里是个乐天派呀，怎么老是摆出一副被到处欠钱的苦逼脸？） 后记： 1.执行到rake deploy时一直报错，我了个去， &hellip;">
+	<meta name="description" content="今天更新文章内容的时候，在执行到rake generate时，报以下错： Generating&hellip; Build Warning: Layout &lsquo;nil&rsquo; requested in blog/categories/octopress/atom.xml does &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,66 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/08/27/the-nil-error/">
+		
+			The Nil Error</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天更新文章内容的时候，在执行到rake generate时，报以下错：</p>
+
+<p>Generating&hellip;
+     Build Warning: Layout &lsquo;nil&rsquo; requested in blog/categories/octopress/atom.xml does not exist.
+     Build Warning: Layout &lsquo;nil&rsquo; requested in blog/categories/git/atom.xml does not exist.
+     Build Warning: Layout &lsquo;nil&rsquo; requested in blog/categories/octopress/atom.xml does not exist.
+     Build Warning: Layout &lsquo;nil&rsquo; requested in blog/categories/git/atom.xml does not exist.</p>
+
+<p>问了谷哥哥，还是stackflow上的回答靠谱：</p>
+
+<p>As detailed here since version 2.2 Jekyll has an issue with the layout validation, so you will manually have to change nil to null in 2 files:</p>
+
+<p>source/atom.xml
+source/_includes/custom/category_feed.xml
+This will sort out Jekyll and it will stop hicking up :)</p>
+
+<p>说白了就是要把这两个文件里的nil修改为null，然后再执行:</p>
+
+<p>rake generate
+rake deploy</p>
+
+<p>总算不报错了</p>
+
+<p>传送门：<a href="http://stackoverflow.com/questions/25159075/integrating-bourbon-to-default-octopress-theme">http://stackoverflow.com/questions/25159075/integrating-bourbon-to-default-octopress-theme</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-27T00:00:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
